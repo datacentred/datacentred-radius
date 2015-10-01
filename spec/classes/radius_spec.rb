@@ -58,5 +58,10 @@ describe 'radius', :type => :class do
       let(:params) { { 'service_ensure' => 'stopped' } }
       it { should contain_service('radius').with_ensure('stopped') }
     end
+
+    context 'with a custom config_file' do
+      let(:params) { { 'config_file' => '/etc/dave.conf' } }
+      it { should contain_file('/etc/dave.conf')}
+    end
   end
 end
