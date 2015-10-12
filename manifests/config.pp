@@ -3,6 +3,13 @@
 # Manage the configuration of the radius service
 #
 class radius::config inherits radius {
+
+  File {
+    owner => 'root',
+    group => 'root',
+    mode  => '0644'
+  }
+
   file { [$radius::config, "${radius::config}/modules", "${radius::config}/sites-available", "${radius::config}/sites-enabled"]:
     ensure  => directory,
     purge   => true,
