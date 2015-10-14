@@ -1,18 +1,17 @@
 ldap {
   dictionary_mapping = ${confdir}/ldap.attrmap
-
   server = "<%= @server %>"
   basedn = "<%= @basedn %>"
   filter = "<%= @filter %>"
-
-# TODO: SSL Support
-#  tls {
-#    start_tls   = yes
-#    cacertfile  = /path/to/cacert.pem
-#    cacertdir   = /path/to/ca/dir/
-#    certfile    = /path/to/radius.crt
-#    keyfile     = /path/to/radius.key
-#    randfile    = /path/to/rnd
-#  }
+  port = "<%= @port %>"
+<% if @use_ssl == true -%>
+  tls {
+    start_tls    = "<%= @start_tls %>"
+    cacertfile   = "<%= @ssl_cacert %>"
+    certfile     = "<%= @ssl_cert %>"
+    keyfile      = "<%= @ssl_key %>"
+    require_cert = "<%= @require_cert %>"
+  }
+<% end -%>
 
 }
