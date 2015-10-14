@@ -7,8 +7,8 @@ class radius::install inherits radius {
   # Bugfix: Correct upstart losing track of the forked process on Ubuntu
   if $::operatingsystem == 'Ubuntu' {
     file { '/etc/init/freeradius.conf':
-      source  => 'puppet:///modules/radius/freeradius.upstart',
-      before  => Package['radius'],
+      source => 'puppet:///modules/radius/freeradius.upstart',
+      before => Package['radius'],
     }
   }
 

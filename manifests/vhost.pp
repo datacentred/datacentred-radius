@@ -48,9 +48,9 @@ define radius::vhost (
   }
 
   file { "${::radius::config}/sites-enabled/${name}":
-    ensure  => $vhost_symlink_ensure,
-    target  => "${::radius::config}/sites-available/${name}",
-    notify  => Class['radius::service'],
+    ensure => $vhost_symlink_ensure,
+    target => "${::radius::config}/sites-available/${name}",
+    notify => Class['radius::service'],
   }
 
 }
