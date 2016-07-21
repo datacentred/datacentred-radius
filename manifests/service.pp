@@ -2,7 +2,7 @@
 #
 # Manage the radius service
 #
-class radius::service inherits radius {
+class radius::service {
   if $radius::service_manage == true {
     service { 'radius':
       ensure     => $radius::service_ensure,

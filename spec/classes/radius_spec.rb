@@ -11,9 +11,8 @@ describe 'radius', :type => :class do
     context 'with no parameters' do
       it { should compile.with_all_deps }
 
-      it { should contain_package('radius').with(
+      it { should contain_package('freeradius').with(
         :ensure => 'present',
-        :name   => 'freeradius'
       )}
 
       it { should contain_service('radius').with(
@@ -31,12 +30,12 @@ describe 'radius', :type => :class do
 
     context 'with a custom package name' do
       let(:params) { { 'package_name' => 'dave' } }
-      it { should contain_package('radius').with_name('dave') }
+      it { should contain_package('freeradius').with_name('dave') }
     end
 
     context 'with the package at a latest version' do
       let(:params) { { 'package_ensure' => 'latest' } }
-      it { should contain_package('radius').with_ensure('latest') }
+      it { should contain_package('freeradius').with_ensure('latest') }
     end
 
     context 'with service management disabled' do

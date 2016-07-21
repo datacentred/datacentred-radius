@@ -2,7 +2,7 @@
 #
 # Manage the configuration of the radius service
 #
-class radius::config inherits radius {
+class radius::config {
 
   File {
     owner => 'root',

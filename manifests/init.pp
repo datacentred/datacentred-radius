@@ -10,9 +10,12 @@ class radius (
   $service_ensure  = $radius::params::service_ensure,
 ) inherits radius::params {
 
-  anchor { 'radius::begin': } ->
-  class { '::radius::install': } ->
-  class { '::radius::config': } ~>
-  class { '::radius::service': } ->
-  anchor { 'radius::end': }
+  include ::radius::install
+  include ::radius::config
+  include ::radius::service
+
+  Class['::radius::install'] ->
+  Class['::radius::config'] ->
+  Class['::radius::service']
+
 }

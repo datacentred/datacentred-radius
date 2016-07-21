@@ -2,19 +2,24 @@
 #
 # Manage the installation of the radius package
 #
-class radius::install inherits radius {
+class radius::install {
 
   # Bugfix: Correct upstart losing track of the forked process on Ubuntu
   if $::operatingsystem == 'Ubuntu' {
+
     file { '/etc/init/freeradius.conf':
       source => 'puppet:///modules/radius/freeradius.upstart',
-      before => Package['radius'],
-    }
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
+    } ->
+
+    Package[$radius::package_name]
+
   }
 
-  package { 'radius':
+  package { $radius::package_name:
     ensure => $radius::package_ensure,
-    name   => $radius::package_name,
   }
 
 }

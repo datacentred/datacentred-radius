@@ -13,17 +13,19 @@ class radius::module::ldap (
   $ssl_cert = undef,
   $ssl_key = undef,
   $require_cert = undef,
-) inherits radius {
+) {
+
+  Class['::radius::install'] ->
 
   package { 'radius-ldap':
-    ensure  => $radius::package_ensure,
-    name    => $radius::ldap_module_package_name,
-    require => Package['radius'],
+    ensure => $radius::package_ensure,
+    name   => $radius::ldap_module_package_name,
   } ->
 
   file { "${radius::config}/modules/ldap":
     content => template('radius/module/ldap.erb'),
-    notify  => Service['radius'],
-  }
+  } ~>
+
+  Class['::radius::service']
 
 }
