@@ -23,9 +23,7 @@ define radius::vhost (
   $config_file = "${radius::config}/sites-available/${name}"
 
   # Create the vhost in sites-available
-  concat { $config_file:
-    notify => Class['radius::service'],
-  }
+  concat { $config_file: }
 
   # vhost header
   concat::fragment{"radius_vhost_${name}_header":
@@ -50,7 +48,6 @@ define radius::vhost (
   file { "${::radius::config}/sites-enabled/${name}":
     ensure => $vhost_symlink_ensure,
     target => "${::radius::config}/sites-available/${name}",
-    notify => Class['radius::service'],
   }
 
 }

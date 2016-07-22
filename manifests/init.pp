@@ -14,8 +14,7 @@ class radius (
   include ::radius::config
   include ::radius::service
 
-  Class['::radius::install'] ->
-  Class['::radius::config'] ->
-  Class['::radius::service']
+  Class['::radius::install'] -> Class['::radius::config'] -> Class['::radius::service']
+  Class['::radius::install'] -> Radius::Vhost <||> ~> Class['::radius::service']
 
 }
