@@ -14,7 +14,6 @@ class radius::params {
       $package_name    = 'freeradius'
       $service_name    = 'freeradius'
       $config          = '/etc/freeradius'
-
       $ldap_module_package_name = 'freeradius-ldap'
     }
     default: {
